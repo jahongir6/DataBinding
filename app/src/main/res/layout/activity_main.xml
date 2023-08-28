@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="employee"
+            type="com.example.databinding.models.Employee" />
+
+        <variable
+            name="user"
+            type="com.example.databinding.models.User" />
+
+        <variable
+            name="handler"
+            type="com.example.databinding.models.MyHandler" />
+
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{employee.name}"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={employee.name}" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{TextUtils.isEmpty(employee.address)?@string/empty_address:employee.address}"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(employee.money)}"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_user_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_user_last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.lastName}"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="save" />
+
+        <Button
+            android:id="@+id/btn_handler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{handler::onDelete}"
+            android:text="invalid" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_launcher_background"
+            app:url="@{employee.avatar}" />
+
+        <include layout="@layout/include_layout" app:employee = "@{employee}" />
+    </LinearLayout>
+</layout><!--android:visibility="@{TextUtils.isEmpty(employee.address)?View.GONE:View.VISIBLE}" />
+    bu kod addres bosh bolsa gone qilib qoyadi,bosh bolmasa visible qiladi-->
+    <!-- android:text="@{TextUtils.isEmpty(employee.address)?@string/empty_address:employee.address}"
+    bu kod agar address bosh bolsa yashash joyi yoq diydi  agar bor bolsa oshani korsatadi  -->
